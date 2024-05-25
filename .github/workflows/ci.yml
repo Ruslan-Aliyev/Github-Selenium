@@ -1,0 +1,23 @@
+name: CI
+on: [push]
+jobs:
+  jenkins:
+    runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports: 
+          - 4444:4444
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Install PHP dependencies
+        run: composer update --no-interaction
+
+      - name: Start local PHP server
+        run: php test.php
