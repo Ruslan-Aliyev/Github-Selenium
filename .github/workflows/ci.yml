@@ -1,7 +1,7 @@
 name: CI
 on: [push]
 jobs:
-  jenkins:
+  selenium:
     runs-on: ubuntu-latest
     services:
       selenium:
